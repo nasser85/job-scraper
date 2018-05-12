@@ -74,7 +74,6 @@
         this.city = city.replace(/ /g, '+').replace(/,/g, '%2C');
         this.state = state.replace(/ /g, '+').replace(/,/g, '%2C');
         this.type = type;
-        this.url = 'https://www.indeed.com/jobs?q=' +  + '&'
         this.query = 'http://allorigins.me/get?url=https%3A//www.indeed.com/jobs%3Fq%3D' + this.jobTitle + '%26l%3D' + this.city + '%252C+' + this.state + '&callback=?';
 
         return this.init();
