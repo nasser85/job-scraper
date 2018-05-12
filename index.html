@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  </head>
+  <body>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+   function autorun()
+   {
+
+    class IndeedParser {
+
+      static getCompany(data) {
+        var capture = data.match(/<span.+?class=\"company.+?<\/span>/gm);
+        return capture == null ? '' : capture[0].replace(/<.+?>/gm, '').trim();
+      }
+
+      static getLocation(data) {
+        var capture = data.match(/location.+?</gm);
+        return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
+      }
+
+      static getTitle(data) {
+        var capture = data.match(/jobTitle.+?<\/a>/gm);
+        return capture == null ? '' : capture[0].replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/<\/a>/g, '').replace(/jobTitle\">/g, '').replace('&#039;', "'").trim();
+      }
+
+      static resolveDescription(url, prospect)  {
+        return $.getJSON('http://allorigins.me/get?url=' + encodeURIComponent(url) + '&callback=?')
+            .then(el=>{
+                var capture = el.contents.replace(/\n/g, '').match(/class=\"{0,1}summary.+?<\/span>/gm);
+                prospect.descriptionHTML = capture == null ? '' : capture[0].trim();
+            })
+            .catch(err=>{console.log(err)})
+      }
+
+      static async setDescription(data, query, prospect) {
+        var url = this.getUrl(data, query);
+        return await this.resolveDescription(url, prospect);
+      }
+
+      static getUrl(data, query) {
+        var capture = data.match(/href=\".+?\"/gm);
+        return capture == null ? '' : 'https://www.indeed.com/viewjob' + capture[0].replace('href="', '').replace('"', '').replace('/rc/clk', '').trim();
+      }
+
+    }
+
+    class JobProspect {
+      constructor(company, location, job, url, description, _data) {
+        this.company = company;
+        this.location = location;
+        this.job = job;
+        this.url = url;
+        this.descriptionHTML = description;
+        this._data = _data;
+      }
+    }
+
+    class Scraper {
+      constructor(jobTitle, city, state, type=null) {
+        this.jobTitle = jobTitle.replace(/ /g, '+').replace(/,/g, '%2C');
+        this.city = city.replace(/ /g, '+').replace(/,/g, '%2C');
+        this.state = state.replace(/ /g, '+').replace(/,/g, '%2C');
+        this.type = type;
+        this.url = 'https://www.indeed.com/jobs?q=' +  + '&'
+        this.query = 'http://allorigins.me/get?url=https%3A//www.indeed.com/jobs%3Fq%3D' + this.jobTitle + '%26l%3D' + this.city + '%252C+' + this.state + '&callback=?';
+
+        return this.init();
+      }
+
+      init() {
+        return $.getJSON(this.query)
+          .then(data=>data.contents.split('data-tn-component="organicJob"')
+                                   .map(el=>el.replace(/\n/g, ''))
+                                   .map(el=>{
+
+                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, el)
+                                      IndeedParser.setDescription(el, this.query, prospect);
+                                      return prospect;
+                                    }))
+          .catch(err=>{throw err})
+      }
+
+    }
+
+      var Scrape = new Scraper('Career Services Advisor', 'New York', 'New York');
+
+      Scrape.then(el=>{console.log(el)}).catch(err=>{throw err})
+
+      $.getJSON('http://allorigins.me/get?url=https%3A//www.monster.com/jobs/search/%3Fq%3Dcareer-services-advisor%26where%3DTampa__2C-FL%26jobid%3D193877545&callback=?')
+        .then(data=>{console.log(data.contents.split('clickJobTitle').map(el=>el.split('\n')))})
+        .catch(err=>{console.log(err)});
+   }
+   if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+   else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+   else window.onload = autorun;
+  </script>
+  </body>
+</html>
