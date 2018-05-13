@@ -8,9 +8,37 @@
   <meta name="author" content="name">
   <meta name="description" content="description here">
   <meta name="keywords" content="keywords,here">
+  <link rel="stylesheet" type="text/css" href="css/job-scraper-modal.css">
   </head>
   <body>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
 
+    <div class="job-scraper__modal-veil open">
+        <div class="job-scraper__modal-wrapper">
+            <div class="job-scraper__modal-header">
+                <p><span class="job-scraper__close-box">X</span></p>
+                <p class="job-scraper__company"><strong>MIDTOWN ADMINISTRATIVE</strong></p>
+                <hr />
+                <p class="job-scraper__title"><em>Youth Services Career Adviser</em></p>
+                <p class="job-scraper__location"><small>Brooklyn, NY</small></p>
+                <p class="job-scraper__date"><small>November 17, 2018</small></p>
+                <p>. . .</p>
+            </div>
+            <div class="job-scraper__modal-container">
+                <span class="summary">An innovative socially conscience company in midtown is currently recruiting dynamic individuals to join our team as a Youth Services Career Adviser. The qualified individuals will provide administrative and clerical support as well as managing a caseload of candidates.<br><br>Recent College Grads Strongly encouraged to apply. Duties and Responsibilities<br><br><ul><li>The Youth Services Career Adviser is responsible for directing all communications, reception, screening candidates for eligibility, assisting staff with data tracking and paperwork, as well as referring candidates to emergency resources and maintaining contact with referred organizations to track candidates.</li><li>Also assists with outreach efforts by contacting service providers and potential referral partners to exchange program information and develop meetings for the Program Manager.</li><li>Makes contact with supportive service partners regarding client service referrals at the direction of the Case Manager.</li><li>Required to have an Undergraduate Degree or significant professional office experience.</li></ul>Requirements<br><br>B.A. Degree a must<br>o Proficient in Microsoft Excel and Word.<br>o Detailed-oriented<br>o Ability to meet deadlines and set priorities<br>o Strong oral and written communication skills<br>o Strong customer relation skills<br>o Strong follow-up skills<br>o Leadership role to the Administrative staff<br>o High degree of flexibility to adapt to changing tasks and priorities<br>o Accuracy rate of 100% in communication of information<br>o Good written and oral communication skills<br>o Exceptional organizational skills<br>o Work well in fast paced environment<br>o Provides excellent customer service<br>o Presents a polished appearance<br>o Teamplayer</span>
+            </div>
+            <div class="job-scraper__modal-footer">
+                <a class="job-scraper__modal-apply">Apply to Job</a>
+            </div>
+        </div>
+    </div>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -27,6 +55,7 @@
       }
 
       static getLocation(data) {
+        console.log(data)
         var capture = data.match(/location.+?</gm);
         return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
       }
@@ -45,6 +74,11 @@
             .catch(err=>{console.log(err)})
       }
 
+      static getTruncation(data) {
+        var capture = data.match(/<span class=\"{0,1}summary.+?<\/span>/gm);
+        return capture == null ? '' : capture[0].replace(/<span.+?>/g, '').replace(/<\/span>/g, '').replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/\&amp\;/g, '&').trim();
+      }
+
       static async setDescription(data, query, prospect) {
         var url = this.getUrl(data, query);
         return await this.resolveDescription(url, prospect);
@@ -58,11 +92,12 @@
     }
 
     class JobProspect {
-      constructor(company, location, job, url, description, _data) {
+      constructor(company, location, job, url, description, truncated, _data) {
         this.company = company;
         this.location = location;
         this.job = job;
         this.url = url;
+        this.truncatedDescription = truncated;
         this.descriptionHTML = description;
         this._data = _data;
       }
@@ -84,8 +119,7 @@
           .then(data=>data.contents.split('data-tn-component="organicJob"')
                                    .map(el=>el.replace(/\n/g, ''))
                                    .map(el=>{
-
-                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, el)
+                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
                                       IndeedParser.setDescription(el, this.query, prospect);
                                       return prospect;
                                     }))
@@ -96,7 +130,11 @@
 
       var Scrape = new Scraper('Career Services Advisor', 'New York', 'New York');
 
-      Scrape.then(el=>{console.log(el)}).catch(err=>{throw err})
+      function log(e) {
+        console.log(e);
+      }
+
+      Scrape.then(log).catch(err=>{throw err})
 
       $.getJSON('http://allorigins.me/get?url=https%3A//www.monster.com/jobs/search/%3Fq%3Dcareer-services-advisor%26where%3DTampa__2C-FL%26jobid%3D193877545&callback=?')
         .then(data=>{console.log(data.contents.split('clickJobTitle').map(el=>el.split('\n')))})
