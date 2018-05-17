@@ -1,0 +1,61 @@
+{
+  "name": "job-scraper",
+  "version": "1.0.0",
+  "description": "An api that returns job prospect data scraped from indeed and monster",
+  "main": "./dist/index.js",
+  "module": "./src/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "prepublishOnly": "npm run build",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nasser85/job-scraper.git"
+  },
+  "keywords": [
+    "web",
+    "scraping",
+    "scraper",
+    "api",
+    "json",
+    "jobs",
+    "job",
+    "indeed",
+    "monster"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "ava": "^0.21.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-register": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "ie >= 10"
+            ],
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "author": "Nasser Abouelazm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nasser85/job-scraper/issues"
+  },
+  "homepage": "https://github.com/nasser85/job-scraper#readme"
+}

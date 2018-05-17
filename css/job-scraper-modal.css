@@ -4,7 +4,6 @@
         z-index: 99;
         position: absolute;
         background-color: white;
-        overflow: scroll;
         left: 10%;
         right: 10%;
         top: 40px;
@@ -38,11 +37,9 @@
     .job-scraper__close-box:hover {
         opacity: 0.6;
     }
-    .job-scraper__location {
-        margin: 0px;
-    }
-    .job-scraper__date {
+    .job-scraper__location, .job-scraper__date {
         margin:0px;
+        font-size: .75rem;
     }
     .job-scraper__modal-veil {
         width: 100%;
@@ -57,10 +54,12 @@
     }
     .job-scraper__title {
         font-size: 1.3rem;
+        font-style: italic;
     }
     .job-scraper__company {
         margin: 5px;
         font-size: .75rem;
+        font-style: bold;
     }
     .job-scraper__modal-apply {
         padding: 15px 30px;
@@ -72,6 +71,7 @@
     .job-scraper__modal-apply:hover {
         background-color: mediumseagreen;
         color: white;
+        cursor: pointer;
     }
     .job-scraper__modal-footer {
         text-align: center;

@@ -10,6 +10,7 @@
   <meta name="keywords" content="keywords,here">
   <link rel="stylesheet" type="text/css" href="css/job-scraper-modal.css">
   <link rel="stylesheet" type="text/css" href="css/job-scraper-display.css">
+  <link rel="stylesheet" type="text/css" href="bootsrap/dist/css/bootstrap-grid.css">
   </head>
   <body>
     <h1>Hello World</h1>
@@ -21,87 +22,8 @@
     <h1>Hello World</h1>
     <h1>Hello World</h1>
 
-   <!--  <div class="job-scraper__modal-veil open">
-        <div class="job-scraper__modal-wrapper">
-            <div class="job-scraper__modal-header">
-                <p><span class="job-scraper__close-box">X</span></p>
-                <p class="job-scraper__company"><strong>MIDTOWN ADMINISTRATIVE</strong></p>
-                <hr />
-                <p class="job-scraper__title"><em>Youth Services Career Adviser</em></p>
-                <p class="job-scraper__location"><small>Brooklyn, NY</small></p>
-                <p class="job-scraper__date"><small>November 17, 2018</small></p>
-                <p>. . .</p>
-            </div>
-            <div class="job-scraper__modal-container">
-                <span class="summary">An innovative socially conscience company in midtown is currently recruiting dynamic individuals to join our team as a Youth Services Career Adviser. The qualified individuals will provide administrative and clerical support as well as managing a caseload of candidates.<br><br>Recent College Grads Strongly encouraged to apply. Duties and Responsibilities<br><br><ul><li>The Youth Services Career Adviser is responsible for directing all communications, reception, screening candidates for eligibility, assisting staff with data tracking and paperwork, as well as referring candidates to emergency resources and maintaining contact with referred organizations to track candidates.</li><li>Also assists with outreach efforts by contacting service providers and potential referral partners to exchange program information and develop meetings for the Program Manager.</li><li>Makes contact with supportive service partners regarding client service referrals at the direction of the Case Manager.</li><li>Required to have an Undergraduate Degree or significant professional office experience.</li></ul>Requirements<br><br>B.A. Degree a must<br>o Proficient in Microsoft Excel and Word.<br>o Detailed-oriented<br>o Ability to meet deadlines and set priorities<br>o Strong oral and written communication skills<br>o Strong customer relation skills<br>o Strong follow-up skills<br>o Leadership role to the Administrative staff<br>o High degree of flexibility to adapt to changing tasks and priorities<br>o Accuracy rate of 100% in communication of information<br>o Good written and oral communication skills<br>o Exceptional organizational skills<br>o Work well in fast paced environment<br>o Provides excellent customer service<br>o Presents a polished appearance<br>o Teamplayer</span>
-            </div>
-            <div class="job-scraper__modal-footer">
-                <a class="job-scraper__modal-apply">Apply to Job</a>
-            </div>
-        </div>
-    </div> -->
-        <div class="job-scraper__items-container">
-            <div class="job-scraper__item-wrapper">
-                <div class="job-scraper__item">
-                    <div class="job-scraper__item-header">
-                        <p class=""><strong>MIDTOWN ADMINISTRATIVE</strong></p>
-                        <p class=""><strong>Career Services Advisor</strong></p>
-                        <p class="">January 15, 2019 | Brooklyn, NY</p>
-                    </div>
-                     <div class="job-scraper__item-content">
-                        <p class="">The Institute is looking for someone to join our Career Development Services team as a part time Career Advisor....</p>
-                    </div>
-                     <div class="job-scraper__item-footer">
-                        <p class="job-scraper__item-footer-content"><a class="job-scraper__item-button">View Job</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="job-scraper__item-wrapper">
-                <div class="job-scraper__item">
-                    <div class="job-scraper__item-header">
-                        <p class=""><strong>MIDTOWN ADMINISTRATIVE</strong></p>
-                        <p class=""><strong>Career Services Advisor</strong></p>
-                        <p class="">January 15, 2019 | Brooklyn, NY</p>
-                    </div>
-                     <div class="job-scraper__item-content">
-                        <p class="">The Institute is looking for someone to join our Career Development Services team as a part time Career Advisor....</p>
-                    </div>
-                     <div class="job-scraper__item-footer">
-                        <p class="job-scraper__item-footer-content"><a class="job-scraper__item-button">View Job</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="job-scraper__item-wrapper">
-                <div class="job-scraper__item">
-                    <div class="job-scraper__item-header">
-                        <p class=""><strong>MIDTOWN ADMINISTRATIVE</strong></p>
-                        <p class=""><strong>Career Services Advisor</strong></p>
-                        <p class="">January 15, 2019 | Brooklyn, NY</p>
-                    </div>
-                     <div class="job-scraper__item-content">
-                        <p class="">The Institute is looking for someone to join our Career Development Services team as a part time Career Advisor....</p>
-                    </div>
-                     <div class="job-scraper__item-footer">
-                        <p class="job-scraper__item-footer-content"><a class="job-scraper__item-button">View Job</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="job-scraper__item-wrapper">
-                <div class="job-scraper__item">
-                    <div class="job-scraper__item-header">
-                        <p class=""><strong>MIDTOWN ADMINISTRATIVE</strong></p>
-                        <p class=""><strong>Career Services Advisor</strong></p>
-                        <p class="">January 15, 2019 | Brooklyn, NY</p>
-                    </div>
-                     <div class="job-scraper__item-content">
-                        <p class="">The Institute is looking for someone to join our Career Development Services team as a part time Career Advisor....</p>
-                    </div>
-                     <div class="job-scraper__item-footer">
-                        <p class="job-scraper__item-footer-content"><a class="job-scraper__item-button">View Job</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <div id="job-scraper-box"></div>
         <h1>hello world</h1>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -111,94 +33,171 @@
    function autorun()
    {
 
-    class IndeedParser {
+    // class IndeedParser {
 
-      static getCompany(data) {
-        var capture = data.match(/<span.+?class=\"company.+?<\/span>/gm);
-        return capture == null ? '' : capture[0].replace(/<.+?>/gm, '').trim();
-      }
+    //   static getCompany(data) {
+    //     var capture = data.match(/<span.+?class=\"company.+?<\/span>/gm);
+    //     return capture == null ? '' : capture[0].replace(/<.+?>/gm, '').trim();
+    //   }
 
-      static getLocation(data) {
-        console.log(data)
-        var capture = data.match(/location.+?</gm);
-        return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
-      }
+    //   static getLocation(data) {
+    //     var capture = data.match(/location.+?</gm);
+    //     return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
+    //   }
 
-      static getTitle(data) {
-        var capture = data.match(/jobTitle.+?<\/a>/gm);
-        return capture == null ? '' : capture[0].replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/<\/a>/g, '').replace(/jobTitle\">/g, '').replace('&#039;', "'").trim();
-      }
+    //   static getTitle(data) {
+    //     var capture = data.match(/jobTitle.+?<\/a>/gm);
+    //     return capture == null ? '' : capture[0].replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/<\/a>/g, '').replace(/jobTitle\">/g, '').replace('&#039;', "'").trim();
+    //   }
 
-      static resolveDescription(url, prospect)  {
-        return $.getJSON('http://allorigins.me/get?url=' + encodeURIComponent(url) + '&callback=?')
-            .then(el=>{
-                var capture = el.contents.replace(/\n/g, '').match(/class=\"{0,1}summary.+?<\/span>/gm);
-                prospect.descriptionHTML = capture == null ? '' : '<span ' + capture[0].trim();
-            })
-            .catch(err=>{console.log(err)})
-      }
+    //   static resolveDescription(url, prospect)  {
+    //     return $.getJSON('http://allorigins.me/get?url=' + encodeURIComponent(url) + '&callback=?')
+    //         .then(el=>{
+    //             var capture = el.contents.replace(/\n/g, '').match(/class=\"{0,1}summary.+?<\/span>/gm);
+    //             prospect.descriptionHTML = capture == null ? '<p style="text-align:center;">DESCRIPTION UNAVAILABLE</p>' : '<span ' + capture[0].trim();
+    //         })
+    //         .catch(err=>{console.log(err)})
+    //   }
 
-      static getTruncation(data) {
-        var capture = data.match(/<span class=\"{0,1}summary.+?<\/span>/gm);
-        return capture == null ? '' : capture[0].replace(/<span.+?>/g, '').replace(/<\/span>/g, '').replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/\&amp\;/g, '&').trim();
-      }
+    //   static getTruncation(data) {
+    //     var capture = data.match(/<span class=\"{0,1}summary.+?<\/span>/gm);
+    //     return capture == null ? '' : capture[0].replace(/<span.+?>/g, '').replace(/<\/span>/g, '').replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/\&amp\;/g, '&').trim();
+    //   }
 
-      static async setDescription(data, query, prospect) {
-        var url = this.getUrl(data, query);
-        return await this.resolveDescription(url, prospect);
-      }
+    //   static async setDescription(data, query, prospect) {
+    //     var url = this.getUrl(data, query);
+    //     return await this.resolveDescription(url, prospect);
+    //   }
 
-      static getUrl(data, query) {
-        var capture = data.match(/href=\".+?\"/gm);
-        return capture == null ? '' : 'https://www.indeed.com/viewjob' + capture[0].replace('href="', '').replace('"', '').replace('/rc/clk', '').trim();
-      }
+    //   static getUrl(data, query) {
+    //     var capture = data.match(/href=\".+?\"/gm);
+    //     return capture == null ? '' : 'https://www.indeed.com/viewjob' + capture[0].replace('href="', '').replace('"', '').replace('/rc/clk', '').trim();
+    //   }
 
-    }
+    // }
 
-    class JobProspect {
-      constructor(company, location, job, url, description, truncated, _data) {
-        this.company = company;
-        this.location = location;
-        this.job = job;
-        this.url = url;
-        this.truncatedDescription = truncated;
-        this.descriptionHTML = description;
-        this._data = _data;
-      }
-    }
+    // class HtmlUtility {
+    //   static triggerModal(el) {
+    //     var prospect = HtmlUtility.cache.data[el.dataset['leadNumber']];
+    //     HtmlUtility.cache.company.innerHTML = prospect.company;
+    //     HtmlUtility.cache.job.innerHTML = prospect.job;
+    //     HtmlUtility.cache.company.innerHTML = prospect.company;
+    //     HtmlUtility.cache.location.innerHTML = prospect.location;
+    //     HtmlUtility.cache.content.innerHTML = prospect.descriptionHTML;
+    //     HtmlUtility.cache.modal.classList.add('open');
 
-    class Scraper {
-      constructor(jobTitle, city, state, type=null) {
-        this.jobTitle = jobTitle.replace(/ /g, '+').replace(/,/g, '%2C');
-        this.city = city.replace(/ /g, '+').replace(/,/g, '%2C');
-        this.state = state.replace(/ /g, '+').replace(/,/g, '%2C');
-        this.type = type;
-        this.query = 'http://allorigins.me/get?url=https%3A//www.indeed.com/jobs%3Fq%3D' + this.jobTitle + '%26l%3D' + this.city + '%252C+' + this.state + '&callback=?';
+    //   }
+    //   static produceCard(prospect, index, arr) {
+    //     return index > 0 ? `<div class="job-scraper__item-wrapper">
+    //             <div class="job-scraper__item">
+    //                 <div class="job-scraper__item-header">
+    //                     <p class=""><strong>${prospect.company.toUpperCase()}</strong></p>
+    //                     <p class=""><strong>${prospect.job}</strong></p>
+    //                     <p class="">January 15, 2019 | ${prospect.location}</p>
+    //                 </div>
+    //                  <div class="job-scraper__item-content">
+    //                     <p class="">${prospect.truncatedDescription}</p>
+    //                 </div>
+    //                  <div class="job-scraper__item-footer">
+    //                     <p class="job-scraper__item-footer-content"><a data-lead-number="${index}" class="job-scraper__item-button">View Job</a></p>
+    //                 </div>
+    //             </div>
+    //         </div>` : '';
+    //   }
+    //   static closeModal() {
+    //     this.cache.modal.classList.remove('open');
+    //   }
+    // }
 
-        return this.init();
-      }
+    // class JobProspect {
+    //   constructor(company, location, job, url, description, truncated, _data) {
+    //     this.company = company;
+    //     this.location = location;
+    //     this.job = job;
+    //     this.url = url;
+    //     this.truncatedDescription = truncated;
+    //     this.descriptionHTML = description;
+    //     this._data = _data;
+    //   }
+    // }
 
-      init() {
-        return $.getJSON(this.query)
-          .then(data=>data.contents.split('data-tn-component="organicJob"')
-                                   .map(el=>el.replace(/\n/g, ''))
-                                   .map(el=>{
-                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
-                                      IndeedParser.setDescription(el, this.query, prospect);
-                                      return prospect;
-                                    }))
-          .catch(err=>{throw err})
-      }
+    // class Scraper {
+    //   constructor(jobTitle, city, state, type=null) {
+    //     this.jobTitle = jobTitle.replace(/ /g, '+').replace(/,/g, '%2C');
+    //     this.city = city.replace(/ /g, '+').replace(/,/g, '%2C');
+    //     this.state = state.replace(/ /g, '+').replace(/,/g, '%2C');
+    //     this.type = type;
+    //     this.query = 'http://allorigins.me/get?url=https%3A//www.indeed.com/jobs%3Fq%3D' + this.jobTitle + '%26l%3D' + this.city + '%252C+' + this.state + '&callback=?';
+    //   }
 
-    }
+    //   init() {
+    //     return $.getJSON(this.query)
+    //       .then(data=>data.contents.split('data-tn-component="organicJob"')
+    //                                .map(el=>el.replace(/\n/g, ''))
+    //                                .map(el=>{
+    //                                   var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
+    //                                   IndeedParser.setDescription(el, this.query, prospect);
+    //                                   return prospect;
+    //                                 }))
+    //       .catch(err=>{throw err})
+    //   }
 
-      var Scrape = new Scraper('Career Services Advisor', 'New York', 'New York');
+    //   renderCards(arr) {
+    //     var el = document.getElementById('job-scraper-box');
+    //     var preHtml = `<div class="job-scraper__modal-veil">
+    //     <div class="job-scraper__modal-wrapper">
+    //         <div class="job-scraper__modal-header">
+    //             <p><span class="job-scraper__close-box">X</span></p>
+    //             <p class="job-scraper__company"></p>
+    //             <hr />
+    //             <p class="job-scraper__title"></p>
+    //             <p class="job-scraper__location"></p>
+    //             <p class="job-scraper__date"></p>
+    //             <p>. . .</p>
+    //         </div>
+    //         <div class="job-scraper__modal-container">
+    //         </div>
+    //         <div class="job-scraper__modal-footer">
+    //             <a class="job-scraper__modal-apply">Apply to Job</a>
+    //         </div>
+    //     </div>
+    // </div>`;
+    //   el.insertAdjacentHTML('beforebegin', preHtml);
+    //   HtmlUtility.cache = {
+    //     modal: document.getElementsByClassName('job-scraper__modal-veil')[0],
+    //     company: document.getElementsByClassName('job-scraper__company')[0],
+    //     job: document.getElementsByClassName('job-scraper__title')[0],
+    //     location: document.getElementsByClassName('job-scraper__location')[0],
+    //     date: document.getElementsByClassName('job-scraper__date')[0],
+    //     content: document.getElementsByClassName('job-scraper__modal-container')[0],
+    //     data: arr
+    //   }
+    //     var html = `<div class="job-scraper__items-container">` + arr.map(HtmlUtility.produceCard).join('') + `</div>`;
+    //     el.insertAdjacentHTML('beforebegin', html);
+    //     el.parentElement.removeChild(el);
+    //     var cardButtons = document.getElementsByClassName('job-scraper__item-button');
+    //     var closeModalButton = document.getElementsByClassName('job-scraper__close-box')[0];
 
+    //     closeModalButton.addEventListener('click', ()=>{
+    //       HtmlUtility.closeModal();
+    //     })
+
+    //     for (var i = 0; i < cardButtons.length; i++) {
+    //       cardButtons[i].addEventListener('click', e=>{
+    //         HtmlUtility.triggerModal(e.srcElement)
+    //       });
+    //     }
+    //   }
+
+    // }
+      import Scraper from './src/index.js';
+      var Scrapey = new Scraper('Career Services Advisor', 'New York', 'New York');
+      var Scrape = Scrapey.init();
       function log(e) {
         console.log(e);
       }
 
-      Scrape.then(log).catch(err=>{throw err})
+      Scrape.then(Scrapey.renderCards).catch(err=>{throw err})
 
       $.getJSON('http://allorigins.me/get?url=https%3A//www.monster.com/jobs/search/%3Fq%3Dcareer-services-advisor%26where%3DTampa__2C-FL%26jobid%3D193877545&callback=?')
         .then(data=>{console.log(data.contents.split('clickJobTitle').map(el=>el.split('\n')))})

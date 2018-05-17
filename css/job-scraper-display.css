@@ -11,6 +11,7 @@
     display: inline-block;
     padding: 20px;
     box-sizing: border-box;
+    vertical-align:top;
 
 }
 .job-scraper__item-header {
@@ -38,7 +39,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 100%;
-    height: 340px;
+    height: auto;
     margin: auto;
     border-radius: 5px;
     background-color: white;
@@ -61,4 +62,9 @@
 }
 .job-scraper__item-date {
     float: right;
+}
+.job-scraper__item-button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }
