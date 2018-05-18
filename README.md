@@ -1,5 +1,5 @@
 # Job Scraper
-#### Scrape Job Post from Indeed and Monster client side!
+#### Scrape job posts from *Indeed* and *Monster* client side!
 ## Getting Started
 In the terminal ...
 ```bash
