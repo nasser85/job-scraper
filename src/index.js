@@ -1,6 +1,7 @@
 import {HtmlUtility} from './html-utility';
 import {JobProspect} from './job-prospect';
 import {IndeedParser} from './indeed-parser';
+import $ from "jquery";
 
 export default class Scraper {
   constructor(jobTitle, city, state, type=null) {
