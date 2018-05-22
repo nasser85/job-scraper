@@ -9,6 +9,11 @@ export class IndeedParser {
     return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
   }
 
+  static getDate(data) {
+    var capture = data.match(/date.+?</gm);
+    return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
+  }
+
   static getTitle(data) {
     var capture = data.match(/jobTitle.+?<\/a>/gm);
     return capture == null ? '' : capture[0].replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/<\/a>/g, '').replace(/jobTitle\">/g, '').replace('&#039;', "'").trim();

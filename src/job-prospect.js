@@ -1,7 +1,8 @@
 export class JobProspect {
-  constructor(company, location, job, url, description, truncated, _data) {
+  constructor(company, location, date, job, url, description, truncated, _data) {
     this.company = company;
     this.location = location;
+    this.date = date;
     this.job = job;
     this.url = url;
     this.truncatedDescription = truncated;

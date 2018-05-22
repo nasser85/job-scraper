@@ -15,7 +15,7 @@ export class HtmlUtility {
                     <div class="job-scraper__item-header">
                         <p class=""><strong>${prospect.company.toUpperCase()}</strong></p>
                         <p class=""><strong>${prospect.job}</strong></p>
-                        <p class="">January 15, 2019 | ${prospect.location}</p>
+                        <p class=""><em>From</em> ${prospect.date} | ${prospect.location}</p>
                     </div>
                      <div class="job-scraper__item-content">
                         <p class="">${prospect.truncatedDescription}</p>

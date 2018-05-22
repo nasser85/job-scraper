@@ -17,7 +17,7 @@ export default class Scraper {
       .then(data=>data.contents.split('data-tn-component="organicJob"')
                                .map(el=>el.replace(/\n/g, ''))
                                .map(el=>{
-                                  var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
+                                  var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getDate(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
                                   IndeedParser.setDescription(el, this.query, prospect);
                                   return prospect;
                                 }))

@@ -45,6 +45,11 @@
         return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
       }
 
+      static getDate(data) {
+        var capture = data.match(/date.+?</gm);
+        return capture == null ? '' : capture[0].replace(/.*>/g, '').replace('<', '').trim();
+      }
+
       static getTitle(data) {
         var capture = data.match(/jobTitle.+?<\/a>/gm);
         return capture == null ? '' : capture[0].replace(/<b>/g, '').replace(/<\/b>/g, '').replace(/<\/a>/g, '').replace(/jobTitle\">/g, '').replace('&#039;', "'").trim();
@@ -94,7 +99,7 @@
                     <div class="job-scraper__item-header">
                         <p class=""><strong>${prospect.company.toUpperCase()}</strong></p>
                         <p class=""><strong>${prospect.job}</strong></p>
-                        <p class="">January 15, 2019 | ${prospect.location}</p>
+                        <p class=""><em>From</em> ${prospect.date} | ${prospect.location}</p>
                     </div>
                      <div class="job-scraper__item-content">
                         <p class="">${prospect.truncatedDescription}</p>
@@ -111,9 +116,10 @@
     }
 
     class JobProspect {
-      constructor(company, location, job, url, description, truncated, _data) {
+      constructor(company, location, date, job, url, description, truncated, _data) {
         this.company = company;
         this.location = location;
+        this.date = date;
         this.job = job;
         this.url = url;
         this.truncatedDescription = truncated;
@@ -136,7 +142,7 @@
           .then(data=>data.contents.split('data-tn-component="organicJob"')
                                    .map(el=>el.replace(/\n/g, ''))
                                    .map(el=>{
-                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
+                                      var prospect = new JobProspect(IndeedParser.getCompany(el), IndeedParser.getLocation(el), IndeedParser.getDate(el), IndeedParser.getTitle(el), IndeedParser.getUrl(el), null, IndeedParser.getTruncation(el), el)
                                       IndeedParser.setDescription(el, this.query, prospect);
                                       return prospect;
                                     }))

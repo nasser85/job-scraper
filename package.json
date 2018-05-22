@@ -63,9 +63,9 @@
     ],
     "babel": "inherit"
   },
-  "jobScraperCss" : {
+  "jobScraperCss" : [
     "css/job-scraper.min.css"
-  },
+  ],
   "author": "Nasser Abouelazm",
   "license": "MIT",
   "bugs": {
