@@ -3,6 +3,7 @@ export class HtmlUtility {
         var prospect = HtmlUtility.cache.data[el.dataset['leadNumber']];
         HtmlUtility.cache.company.innerHTML = prospect.company;
         HtmlUtility.cache.job.innerHTML = prospect.job;
+        HtmlUtility.cache.date.innerHTML = prospect.date;
         HtmlUtility.cache.company.innerHTML = prospect.company;
         HtmlUtility.cache.location.innerHTML = prospect.location;
         HtmlUtility.cache.content.innerHTML = prospect.descriptionHTML;
