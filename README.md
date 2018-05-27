@@ -18,7 +18,7 @@ The job scraper takes in the following *three* arguments
 For Example...
 ```javascript
 const args = ['Pizza Delivery', 'New York', 'New York'] 
-const jobScraper = new JobScraper(args);
+const jobScraper = new JobScraper(...args);
 ```
 
 The ``init`` function returns a promise with which you can work with...
