@@ -8,7 +8,7 @@ export class HtmlUtility {
         HtmlUtility.cache.location.innerHTML = prospect.location;
         HtmlUtility.cache.content.innerHTML = prospect.descriptionHTML;
         HtmlUtility.cache.modal.classList.add('open');
-
+        HtmlUtility.cache.apply.setAttribute('href', prospect.url);
       }
       static produceCard(prospect, index, arr) {
         return index > 0 ? `<div class="job-scraper__item-wrapper">

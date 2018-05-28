@@ -40,7 +40,7 @@ export default class Scraper {
 	        <div class="job-scraper__modal-container">
 	        </div>
 	        <div class="job-scraper__modal-footer">
-	            <a class="job-scraper__modal-apply">Apply to Job</a>
+	            <a class="job-scraper__modal-apply" target="_blank">Apply to Job</a>
 	        </div>
 	    </div>
 	</div>`;
@@ -52,7 +52,8 @@ export default class Scraper {
 	    location: document.getElementsByClassName('job-scraper__location')[0],
 	    date: document.getElementsByClassName('job-scraper__date')[0],
 	    content: document.getElementsByClassName('job-scraper__modal-container')[0],
-	    data: arr
+	    data: arr,
+      apply: document.getElementsByClassName('job-scraper__modal-apply')[0]
 	}
     var html = `<div class="job-scraper__items-container">` + arr.map(HtmlUtility.produceCard).join('') + `</div>`;
     el.insertAdjacentHTML('beforebegin', html);
