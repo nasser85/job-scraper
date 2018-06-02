@@ -1,5 +1,5 @@
 import $ from "jquery";
-export class IndeedParser {
+export default class IndeedParser {
   static getCompany(data) {
     var capture = data.match(/<span.+?class=\"company.+?<\/span>/gm);
     return capture == null ? '' : capture[0].replace(/<.+?>/gm, '').trim();
