@@ -1,2 +1,3 @@
 import 'babel-polyfill';
-import './scraper.js';
+import Scraper from './scraper.js';
+export default Scraper;
