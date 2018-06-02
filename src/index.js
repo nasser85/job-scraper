@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import {HtmlUtility} from './html-utility';
 import {JobProspect} from './job-prospect';
 import {IndeedParser} from './indeed-parser';

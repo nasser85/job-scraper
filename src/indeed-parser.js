@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 export class IndeedParser {
   static getCompany(data) {
     var capture = data.match(/<span.+?class=\"company.+?<\/span>/gm);
